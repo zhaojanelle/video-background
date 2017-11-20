@@ -1,0 +1,39 @@
+repo: 'video-background'
+canvasCourse: 'web-dev-5'
+
+inherit:
+  - naming-restrict-live
+  - git-2
+  - html
+
+html:
+  - path: 'index.html'
+    has:
+      - 'div.banner.relative.chop > div.embed.embed-4by3 > video.embed-item[src*="magnetic-connections.mp4"]'
+      - 'video[muted][autoplay][loop][poster="images/sol.jpg"]'
+      - 'div.banner > div.max-length.relative.zindex-1 > h1'
+      - 'h1 + p + a.btn.btn-ghost'
+    search:
+      - 'The Sun'
+      - 'The Sun is the star at the center of the Solar System; a nearly perfect sphere of hot plasma, with internal convective motion that generates a magnetic field via a dynamo process.'
+      - 'Learn more'
+
+css:
+  - path: 'css/main.css'
+    locked: true
+
+screenshots:
+  - path: 'index.html'
+    sizes: [960]
+
+functionality:
+  - path: 'index.html'
+    tests:
+      - |
+        let link = $('.btn');
+        let oldBg = css(link).backgroundColor;
+
+        hover(link, function () {
+          if (css(link).backgroundColor == oldBg) return fail('The background colour of the button doesn’t change when hovered');
+          pass();
+        });
